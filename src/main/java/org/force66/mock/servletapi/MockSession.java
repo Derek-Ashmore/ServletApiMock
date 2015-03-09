@@ -31,46 +31,53 @@ import org.apache.commons.collections4.iterators.IteratorEnumeration;
  */
 public class MockSession implements HttpSession {
     
-    Map<String,Object> attributeMap = new HashMap<String,Object>();
-    Map<String,Object> valueMap = new HashMap<String,Object>();
-
+    Map<String,Object> attributeMap;
+    Map<String,Object> valueMap;
+    long creationTime;
+    
+    public MockSession() {
+    	init();
+    }
+    
+    /**
+     * Re-initializes the mock session.
+     */
+    public void init() {
+    	attributeMap = new HashMap<String,Object>();
+    	valueMap = new HashMap<String,Object>();
+    	creationTime = System.currentTimeMillis();
+    }
+ 
     public Object getAttribute(String attr) {
         return attributeMap.get(attr);
     }
 
     public Enumeration getAttributeNames() {
-        // TODO Auto-generated method stub
         return new IteratorEnumeration(attributeMap.keySet().iterator());
     }
 
     public long getCreationTime() {
-        // TODO Auto-generated method stub
-        return 0;
+        return creationTime;
     }
 
     public String getId() {
-        // TODO Auto-generated method stub
-        return null;
+        throw new UnsupportedOperationException("getId() not supported");
     }
 
     public long getLastAccessedTime() {
-        // TODO Auto-generated method stub
-        return 0;
+    	throw new UnsupportedOperationException("getLastAccessedTime() not supported");
     }
 
     public int getMaxInactiveInterval() {
-        // TODO Auto-generated method stub
-        return 0;
+    	throw new UnsupportedOperationException("getMaxInactiveInterval() not supported");
     }
 
     public ServletContext getServletContext() {
-        // TODO Auto-generated method stub
-        return null;
+    	throw new UnsupportedOperationException("getServletContext() not supported");
     }
 
     public HttpSessionContext getSessionContext() {
-        // TODO Auto-generated method stub
-        return null;
+    	throw new UnsupportedOperationException("getSessionContext() not supported");
     }
 
     public Object getValue(String key) {
@@ -82,13 +89,12 @@ public class MockSession implements HttpSession {
     }
 
     public void invalidate() {
-        // TODO Auto-generated method stub
+    	throw new UnsupportedOperationException("invalidate() not supported");
 
     }
 
     public boolean isNew() {
-        // TODO Auto-generated method stub
-        return false;
+    	throw new UnsupportedOperationException("isNew() not supported");
     }
 
     public void putValue(String key, Object value) {
@@ -112,7 +118,7 @@ public class MockSession implements HttpSession {
     }
 
     public void setMaxInactiveInterval(int arg0) {
-        // TODO Auto-generated method stub
+    	throw new UnsupportedOperationException("setMaxInactiveInterval() not supported");
 
     }
 

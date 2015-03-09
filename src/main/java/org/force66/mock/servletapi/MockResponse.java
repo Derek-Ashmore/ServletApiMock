@@ -32,14 +32,33 @@ import javax.servlet.http.HttpServletResponse;
 public class MockResponse implements HttpServletResponse {
     
     private String contentType;
-    private ServletOutputStream outputStream = new MockServletOutputStream();
+    private MockServletOutputStream outputStream ;
+    private int contentLength;
+    
+    public MockResponse() {
+    	this.init();
+    }
+    
+    public void init() {
+    	outputStream = new MockServletOutputStream();
+    	contentType = null;
+    	contentLength = 0;
+    }
+    
+    public boolean streamWasFlushed() {
+    	return outputStream.wasFlushed();
+    }
+    
+    public boolean streamWasClosed() {
+    	return outputStream.wasClosed();
+    }
     
     public MockServletOutputStream getMockServletOutputStream() {
         return (MockServletOutputStream)outputStream;
     }
 
     public void flushBuffer() throws IOException {
-        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("flushBuffer() not supported");
 
     }
     
@@ -48,12 +67,10 @@ public class MockResponse implements HttpServletResponse {
     }
 
     public int getBufferSize() {
-        // TODO Auto-generated method stub
-        return 0;
+    	throw new UnsupportedOperationException("flushBuffer() not supported");
     }
 
     public String getCharacterEncoding() {
-        // TODO Auto-generated method stub
         return Charset.defaultCharset().name();
     }
 
@@ -62,8 +79,7 @@ public class MockResponse implements HttpServletResponse {
     }
 
     public Locale getLocale() {
-        // TODO Auto-generated method stub
-        return null;
+    	throw new UnsupportedOperationException("flushBuffer() not supported");
     }
 
     public ServletOutputStream getOutputStream() throws IOException {
@@ -71,37 +87,35 @@ public class MockResponse implements HttpServletResponse {
     }
 
     public PrintWriter getWriter() throws IOException {
-        // TODO Auto-generated method stub
         return new PrintWriter(new OutputStreamWriter(outputStream));
     }
 
     public boolean isCommitted() {
-        // TODO Auto-generated method stub
-        return false;
+    	throw new UnsupportedOperationException("isCommitted() not supported");
     }
 
     public void reset() {
-        // TODO Auto-generated method stub
+    	throw new UnsupportedOperationException("reset() not supported");
 
     }
 
     public void resetBuffer() {
-        // TODO Auto-generated method stub
+    	throw new UnsupportedOperationException("resetBuffer() not supported");
 
     }
 
     public void setBufferSize(int arg0) {
-        // TODO Auto-generated method stub
+    	throw new UnsupportedOperationException("setBufferSize() not supported");
 
     }
 
     public void setCharacterEncoding(String arg0) {
-        // TODO Auto-generated method stub
+    	throw new UnsupportedOperationException("setCharacterEncoding() not supported");
 
     }
 
     public void setContentLength(int arg0) {
-        // TODO Auto-generated method stub
+    	this.contentLength = arg0;
 
     }
 
@@ -111,118 +125,113 @@ public class MockResponse implements HttpServletResponse {
     }
 
     public void setLocale(Locale arg0) {
-        // TODO Auto-generated method stub
+    	throw new UnsupportedOperationException("setLocale() not supported");
 
     }
 
     public void addCookie(Cookie arg0) {
-        // TODO Auto-generated method stub
+    	throw new UnsupportedOperationException("addCookie() not supported");
 
     }
 
     public void addDateHeader(String arg0, long arg1) {
-        // TODO Auto-generated method stub
+    	throw new UnsupportedOperationException("addDateHeader() not supported");
 
     }
 
     public void addHeader(String arg0, String arg1) {
-        // TODO Auto-generated method stub
+    	throw new UnsupportedOperationException("addHeader() not supported");
 
     }
 
     public void addIntHeader(String arg0, int arg1) {
-        // TODO Auto-generated method stub
+    	throw new UnsupportedOperationException("addIntHeader() not supported");
 
     }
 
     public boolean containsHeader(String arg0) {
-        // TODO Auto-generated method stub
-        return false;
+    	throw new UnsupportedOperationException("containsHeader() not supported");
     }
 
     public String encodeRedirectURL(String arg0) {
-        // TODO Auto-generated method stub
-        return null;
+    	throw new UnsupportedOperationException("encodeRedirectURL() not supported");
     }
 
     public String encodeRedirectUrl(String arg0) {
-        // TODO Auto-generated method stub
-        return null;
+    	throw new UnsupportedOperationException("encodeRedirectUrl() not supported");
     }
 
     public String encodeURL(String arg0) {
-        // TODO Auto-generated method stub
-        return null;
+    	throw new UnsupportedOperationException("encodeURL() not supported");
     }
 
     public String encodeUrl(String arg0) {
-        // TODO Auto-generated method stub
-        return null;
+    	throw new UnsupportedOperationException("encodeUrl() not supported");
     }
 
     public void sendError(int arg0) throws IOException {
-        // TODO Auto-generated method stub
+    	throw new UnsupportedOperationException("sendError() not supported");
 
     }
 
     public void sendError(int arg0, String arg1) throws IOException {
-        // TODO Auto-generated method stub
+    	throw new UnsupportedOperationException("sendError() not supported");
 
     }
 
     public void sendRedirect(String arg0) throws IOException {
-        // TODO Auto-generated method stub
+    	throw new UnsupportedOperationException("sendRedirect() not supported");
 
     }
 
     public void setDateHeader(String arg0, long arg1) {
-        // TODO Auto-generated method stub
+    	throw new UnsupportedOperationException("setDateHeader() not supported");
 
     }
 
     public void setHeader(String arg0, String arg1) {
-        // TODO Auto-generated method stub
+    	throw new UnsupportedOperationException("setHeader() not supported");
 
     }
 
     public void setIntHeader(String arg0, int arg1) {
-        // TODO Auto-generated method stub
+    	throw new UnsupportedOperationException("setIntHeader() not supported");
 
     }
 
     public void setStatus(int arg0) {
-        // TODO Auto-generated method stub
+    	throw new UnsupportedOperationException("setStatus() not supported");
 
     }
 
     public void setStatus(int arg0, String arg1) {
-        // TODO Auto-generated method stub
+    	throw new UnsupportedOperationException("setStatus() not supported");
 
     }
 
 	public void setContentLengthLong(long len) {
-		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("setContentLengthLong() not supported");
 		
 	}
 
 	public int getStatus() {
-		// TODO Auto-generated method stub
-		return 0;
+		throw new UnsupportedOperationException("getStatus() not supported");
 	}
 
 	public String getHeader(String name) {
-		// TODO Auto-generated method stub
-		return null;
+		throw new UnsupportedOperationException("getHeader() not supported");
 	}
 
 	public Collection<String> getHeaders(String name) {
-		// TODO Auto-generated method stub
-		return null;
+		throw new UnsupportedOperationException("getHeaders() not supported");
 	}
 
 	public Collection<String> getHeaderNames() {
-		// TODO Auto-generated method stub
-		return null;
+		throw new UnsupportedOperationException("getHeaderNames() not supported");
+	}
+
+	public int getContentLength() {
+		return contentLength;
 	}
 
 }

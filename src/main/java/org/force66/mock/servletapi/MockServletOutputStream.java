@@ -26,7 +26,22 @@ import javax.servlet.WriteListener;
  */
 public class MockServletOutputStream extends ServletOutputStream {
     
-    private ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+    private ByteArrayOutputStream outputStream;
+    private boolean wasFlushed;
+    private boolean wasClosed;
+    
+    public MockServletOutputStream() {
+    	this.init();
+    }
+    
+    /**
+     * Re-initializes the output stream
+     */
+    public void init() {
+    	wasFlushed = false;
+    	wasClosed = false;
+    	outputStream = new ByteArrayOutputStream();
+    }
 
     @Override
     public void write(int b) throws IOException {
@@ -50,6 +65,36 @@ public class MockServletOutputStream extends ServletOutputStream {
 	@Override
 	public void setWriteListener(WriteListener writeListener) {
 		
+	}
+
+	@Override
+	public void write(byte[] b) throws IOException {
+		super.write(b);
+	}
+
+	@Override
+	public void write(byte[] b, int off, int len) throws IOException {
+		outputStream.write(b, off, len);
+	}
+
+	@Override
+	public void flush() throws IOException {
+		wasFlushed = true;
+		outputStream.flush();
+	}
+	
+	public boolean wasFlushed() {
+		return wasFlushed;
+	}
+
+	@Override
+	public void close() throws IOException {
+		wasClosed = true;
+		outputStream.close();
+	}
+	
+	public boolean wasClosed() {
+		return wasClosed;
 	}
 
 }

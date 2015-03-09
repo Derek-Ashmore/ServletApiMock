@@ -26,14 +26,14 @@ import javax.servlet.ServletContext;
  */
 public class MockFilterConfig implements FilterConfig {
     
+	private String filterName = "MockFilter";
     private Properties initParms = new Properties();
 
     /* (non-Javadoc)
      * @see javax.servlet.FilterConfig#getFilterName()
      */
     public String getFilterName() {
-        // TODO Auto-generated method stub
-        return "MockFilter";
+         return filterName;
     }
 
     /* (non-Javadoc)
@@ -62,8 +62,11 @@ public class MockFilterConfig implements FilterConfig {
      * @see javax.servlet.FilterConfig#getServletContext()
      */
     public ServletContext getServletContext() {
-        // TODO Auto-generated method stub
-        return null;
+        throw new UnsupportedOperationException("getServletContext() not yet supported");
     }
+
+	protected void setFilterName(String filterName) {
+		this.filterName = filterName;
+	}
 
 }

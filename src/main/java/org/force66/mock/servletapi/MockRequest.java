@@ -51,11 +51,24 @@ public class MockRequest implements HttpServletRequest {
     Map<String,String> parameterMap = new HashMap<String,String>();
     Map<String,String> headerMap = new HashMap<String,String>();
     
-    HttpSession session = new MockSession();
+    HttpSession session= new MockSession();
     String requestURI = "/myApp/jmu";
     String pathInfo = "/jmu";
     String contextPath = "/myApp";
     String method = "get";
+    
+    public MockRequest() {
+    	this.init();
+    }
+    
+    /**
+     * Re-initializes request
+     */
+    public void init() {
+    	attributeMap = new HashMap<String,Object>();
+    	parameterMap = new HashMap<String,String>();
+    	headerMap = new HashMap<String,String>();
+    }
     
     public void setUri(String contextPath, String pathInfo) {
     	this.contextPath = prependHash(contextPath);
@@ -63,7 +76,7 @@ public class MockRequest implements HttpServletRequest {
     	requestURI = this.contextPath + this.pathInfo;
     }
     
-    private String prependHash(String value) {
+    protected String prependHash(String value) {
     	if (value == null)   return "/";
     	if (value != null && value.startsWith("/"))   return value;
     	return "/"+value;
@@ -74,53 +87,43 @@ public class MockRequest implements HttpServletRequest {
     }
     
     public Enumeration getAttributeNames() {
-        // TODO Auto-generated method stub
-        return new IteratorEnumeration(attributeMap.keySet().iterator());
+         return new IteratorEnumeration(attributeMap.keySet().iterator());
     }
 
     public String getCharacterEncoding() {
-        // TODO Auto-generated method stub
-        return null;
+        throw new UnsupportedOperationException("getCharacterEncoding() not supported");
     }
 
     public int getContentLength() {
-        // TODO Auto-generated method stub
-        return 0;
+    	throw new UnsupportedOperationException("getContentLength() not supported");
     }
 
     public String getContentType() {
-        // TODO Auto-generated method stub
-        return null;
+    	throw new UnsupportedOperationException("getContentType() not supported");
     }
 
     public ServletInputStream getInputStream() throws IOException {
-        // TODO Auto-generated method stub
-        return null;
+    	throw new UnsupportedOperationException("getInputStream() not supported");
     }
 
     public String getLocalAddr() {
-        // TODO Auto-generated method stub
-        return null;
+    	throw new UnsupportedOperationException("getLocalAddr() not supported");
     }
 
     public String getLocalName() {
-        // TODO Auto-generated method stub
-        return null;
+    	throw new UnsupportedOperationException("getLocalName() not supported");
     }
 
     public int getLocalPort() {
-        // TODO Auto-generated method stub
-        return 0;
+    	throw new UnsupportedOperationException("getLocalPort() not supported");
     }
 
     public Locale getLocale() {
-        // TODO Auto-generated method stub
-        return null;
+    	throw new UnsupportedOperationException("getLocale() not supported");
     }
 
     public Enumeration getLocales() {
-        // TODO Auto-generated method stub
-        return null;
+    	throw new UnsupportedOperationException("getLocales() not supported");
     }
 
     public String getParameter(String arg0) {
@@ -136,63 +139,51 @@ public class MockRequest implements HttpServletRequest {
     }
 
     public String[] getParameterValues(String arg0) {
-        // TODO Auto-generated method stub
-        return null;
+    	throw new UnsupportedOperationException("getParameterValues() not supported");
     }
 
     public String getProtocol() {
-        // TODO Auto-generated method stub
-        return null;
+    	throw new UnsupportedOperationException("getProtocol() not supported");
     }
 
     public BufferedReader getReader() throws IOException {
-        // TODO Auto-generated method stub
-        return null;
+    	throw new UnsupportedOperationException("getReader() not supported");
     }
 
     public String getRealPath(String arg0) {
-        // TODO Auto-generated method stub
-        return null;
+    	throw new UnsupportedOperationException("getRealPath() not supported");
     }
 
     public String getRemoteAddr() {
-        // TODO Auto-generated method stub
-        return null;
+    	throw new UnsupportedOperationException("getRemoteAddr() not supported");
     }
 
     public String getRemoteHost() {
-        // TODO Auto-generated method stub
-        return null;
+    	throw new UnsupportedOperationException("getRemoteHost() not supported");
     }
 
     public int getRemotePort() {
-        // TODO Auto-generated method stub
-        return 0;
+    	throw new UnsupportedOperationException("getRemotePort() not supported");
     }
 
     public RequestDispatcher getRequestDispatcher(String arg0) {
-        // TODO Auto-generated method stub
-        return null;
+    	throw new UnsupportedOperationException("getRequestDispatcher() not supported");
     }
 
     public String getScheme() {
-        // TODO Auto-generated method stub
-        return null;
+    	throw new UnsupportedOperationException("getScheme() not supported");
     }
 
     public String getServerName() {
-        // TODO Auto-generated method stub
-        return null;
+    	throw new UnsupportedOperationException("getServerName() not supported");
     }
 
     public int getServerPort() {
-        // TODO Auto-generated method stub
-        return 0;
+    	throw new UnsupportedOperationException("getServerPort() not supported");
     }
 
     public boolean isSecure() {
-        // TODO Auto-generated method stub
-        return false;
+    	throw new UnsupportedOperationException("isSecure() not supported");
     }
 
     public void removeAttribute(String key) {
@@ -204,16 +195,25 @@ public class MockRequest implements HttpServletRequest {
         attributeMap.put(key, value);
 
     }
+    
+    public void removePArameter(String key) {
+    	parameterMap.remove(key);
+
+    }
+
+    public void setParameter(String key, String value) {
+    	parameterMap.put(key, value);
+
+    }
 
     public void setCharacterEncoding(String arg0)
             throws UnsupportedEncodingException {
-        // TODO Auto-generated method stub
+    	throw new UnsupportedOperationException("setCharacterEncoding() not supported");
 
     }
 
     public String getAuthType() {
-        // TODO Auto-generated method stub
-        return null;
+    	throw new UnsupportedOperationException("getAuthType() not supported");
     }
 
     public String getContextPath() {
@@ -221,13 +221,11 @@ public class MockRequest implements HttpServletRequest {
     }
 
     public Cookie[] getCookies() {
-        // TODO Auto-generated method stub
-        return null;
+    	throw new UnsupportedOperationException("getCookies() not supported");
     }
 
     public long getDateHeader(String arg0) {
-        // TODO Auto-generated method stub
-        return 0;
+    	throw new UnsupportedOperationException("getDateHeader() not supported");
     }
 
     public String getHeader(String header) {
@@ -239,18 +237,15 @@ public class MockRequest implements HttpServletRequest {
     }
 
     public Enumeration getHeaderNames() {
-        // TODO Auto-generated method stub
-        return null;
+    	throw new UnsupportedOperationException("getHeaderNames() not supported");
     }
 
     public Enumeration getHeaders(String arg0) {
-        // TODO Auto-generated method stub
-        return null;
+    	throw new UnsupportedOperationException("getHeaders() not supported");
     }
 
     public int getIntHeader(String arg0) {
-        // TODO Auto-generated method stub
-        return 0;
+    	throw new UnsupportedOperationException("getIntHeader() not supported");
     }
 
     public String getMethod() {
@@ -266,78 +261,63 @@ public class MockRequest implements HttpServletRequest {
     }
 
     public String getPathTranslated() {
-        // TODO Auto-generated method stub
-        return null;
+    	throw new UnsupportedOperationException("getPathTranslated() not supported");
     }
 
     public String getQueryString() {
-        // TODO Auto-generated method stub
-        return null;
+    	throw new UnsupportedOperationException("getQueryString() not supported");
     }
 
     public String getRemoteUser() {
-        // TODO Auto-generated method stub
-        return null;
+    	throw new UnsupportedOperationException("getRemoteUser() not supported");
     }
 
     public String getRequestURI() {
-        // TODO Auto-generated method stub
         return requestURI;
     }
 
     public StringBuffer getRequestURL() {
-        // TODO Auto-generated method stub
-        return null;
+    	throw new UnsupportedOperationException("getRequestURL() not supported");
     }
 
     public String getRequestedSessionId() {
-        // TODO Auto-generated method stub
-        return null;
+    	throw new UnsupportedOperationException("getRequestedSessionId() not supported");
     }
 
     public String getServletPath() {
-        // TODO Auto-generated method stub
-        return null;
+    	throw new UnsupportedOperationException("getServletPath() not supported");
     }
 
     public HttpSession getSession() {
-        // TODO Auto-generated method stub
         return session;
     }
 
     public HttpSession getSession(boolean arg0) {
-        // TODO Auto-generated method stub
-        return session;
+         return session;
     }
 
     public Principal getUserPrincipal() {
-        // TODO Auto-generated method stub
-        return null;
+    	throw new UnsupportedOperationException("getUserPrincipal() not supported");
     }
 
     public boolean isRequestedSessionIdFromCookie() {
-        // TODO Auto-generated method stub
-        return false;
+    	throw new UnsupportedOperationException("isRequestedSessionIdFromCookie() not supported");
     }
 
     public boolean isRequestedSessionIdFromURL() {
-        // TODO Auto-generated method stub
-        return false;
+    	throw new UnsupportedOperationException("isRequestedSessionIdFromURL() not supported");
     }
 
     public boolean isRequestedSessionIdFromUrl() {
-        // TODO Auto-generated method stub
-        return false;
+    	throw new UnsupportedOperationException("isRequestedSessionIdFromUrl() not supported");
     }
 
     public boolean isRequestedSessionIdValid() {
-        // TODO Auto-generated method stub
-        return false;
+    	throw new UnsupportedOperationException("isRequestedSessionIdValid() not supported");
     }
 
     public boolean isUserInRole(String arg0) {
-        // TODO Auto-generated method stub
-        return false;
+    	throw new UnsupportedOperationException("isUserInRole() not supported");
     }
 
     public void setRequestURI(String requestURI) {
@@ -345,81 +325,68 @@ public class MockRequest implements HttpServletRequest {
     }
 
 	public long getContentLengthLong() {
-		// TODO Auto-generated method stub
-		return 0;
+		throw new UnsupportedOperationException("getContentLengthLong() not supported");
 	}
 
 	public ServletContext getServletContext() {
-		// TODO Auto-generated method stub
-		return null;
+		throw new UnsupportedOperationException("getServletContext() not supported");
 	}
 
 	public AsyncContext startAsync() throws IllegalStateException {
-		// TODO Auto-generated method stub
-		return null;
+		throw new UnsupportedOperationException("startAsync() not supported");
 	}
 
 	public AsyncContext startAsync(ServletRequest servletRequest,
 			ServletResponse servletResponse) throws IllegalStateException {
-		// TODO Auto-generated method stub
-		return null;
+		throw new UnsupportedOperationException("startAsync() not supported");
 	}
 
 	public boolean isAsyncStarted() {
-		// TODO Auto-generated method stub
-		return false;
+		throw new UnsupportedOperationException("isAsyncStarted() not supported");
 	}
 
 	public boolean isAsyncSupported() {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
 	public AsyncContext getAsyncContext() {
-		// TODO Auto-generated method stub
-		return null;
+		throw new UnsupportedOperationException("getAsyncContext() not supported");
 	}
 
 	public DispatcherType getDispatcherType() {
-		// TODO Auto-generated method stub
-		return null;
+		throw new UnsupportedOperationException("getDispatcherType() not supported");
 	}
 
 	public String changeSessionId() {
-		// TODO Auto-generated method stub
-		return null;
+		throw new UnsupportedOperationException("changeSessionId() not supported");
 	}
 
 	public boolean authenticate(HttpServletResponse response)
 			throws IOException, ServletException {
-		// TODO Auto-generated method stub
-		return false;
+		throw new UnsupportedOperationException("authenticate() not supported");
 	}
 
 	public void login(String username, String password) throws ServletException {
-		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("login() not supported");
 		
 	}
 
 	public void logout() throws ServletException {
-		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("logout() not supported");
 		
 	}
 
 	public Collection<Part> getParts() throws IOException, ServletException {
-		// TODO Auto-generated method stub
-		return null;
+		throw new UnsupportedOperationException("getParts() not supported");
 	}
 
 	public Part getPart(String name) throws IOException, ServletException {
-		// TODO Auto-generated method stub
-		return null;
+		throw new UnsupportedOperationException("getPart() not supported");
 	}
 
 	public <T extends HttpUpgradeHandler> T upgrade(Class<T> handlerClass)
 			throws IOException, ServletException {
-		// TODO Auto-generated method stub
-		return null;
+		throw new UnsupportedOperationException("upgrade() not supported");
 	}
 
 	public void setPathInfo(String pathInfo) {

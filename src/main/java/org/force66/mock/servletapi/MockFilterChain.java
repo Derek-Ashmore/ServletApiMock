@@ -20,6 +20,8 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 
+import org.apache.commons.lang3.Validate;
+
 /**
  * Mock implementation for javax.servlet.FilterChain.
  * @author D. Ashmore
@@ -38,6 +40,9 @@ public class MockFilterChain implements FilterChain {
 
     public void doFilter(ServletRequest request, ServletResponse response)
             throws IOException, ServletException {
+    	Validate.notNull(request, "Null request not allowed.");
+    	Validate.notNull(response, "Null response not allowed.");
+    	
         if (this.runtimeException != null) {
             throw this.runtimeException;
         }
@@ -61,7 +66,7 @@ public class MockFilterChain implements FilterChain {
             response.getOutputStream().write(outputData);
         }
         
-        if (response != null && response.getOutputStream() != null) {
+        if (response.getOutputStream() != null) {
             response.getOutputStream().flush();
             response.getOutputStream().close();
         }
