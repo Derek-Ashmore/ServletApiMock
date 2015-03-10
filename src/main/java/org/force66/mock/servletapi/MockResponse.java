@@ -34,6 +34,7 @@ public class MockResponse implements HttpServletResponse {
     private String contentType;
     private MockServletOutputStream outputStream ;
     private int contentLength;
+    private int status;
     
     public MockResponse() {
     	this.init();
@@ -43,6 +44,7 @@ public class MockResponse implements HttpServletResponse {
     	outputStream = new MockServletOutputStream();
     	contentType = null;
     	contentLength = 0;
+    	status = 0;
     }
     
     public boolean streamWasFlushed() {
@@ -199,13 +201,13 @@ public class MockResponse implements HttpServletResponse {
 
     }
 
-    public void setStatus(int arg0) {
-    	throw new UnsupportedOperationException("setStatus() not supported");
+    public void setStatus(int s) {
+    	status = s;
 
     }
 
-    public void setStatus(int arg0, String arg1) {
-    	throw new UnsupportedOperationException("setStatus() not supported");
+    public void setStatus(int s, String arg1) {
+    	status = s;
 
     }
 
@@ -215,7 +217,7 @@ public class MockResponse implements HttpServletResponse {
 	}
 
 	public int getStatus() {
-		throw new UnsupportedOperationException("getStatus() not supported");
+		return status;
 	}
 
 	public String getHeader(String name) {

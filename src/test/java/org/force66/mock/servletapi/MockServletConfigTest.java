@@ -13,39 +13,40 @@
  */
 package org.force66.mock.servletapi;
 
+import static org.junit.Assert.*;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-public class MockResponseTest {
+public class MockServletConfigTest {
 	
-	MockResponse response;
+	MockServletConfig servletConfig;
 
 	@Before
 	public void setUp() throws Exception {
-		response = new MockResponse();
+		servletConfig = new MockServletConfig();
 	}
 
 	@Test
 	public void testBasic() throws Exception {
-		Assert.assertTrue("".equals(response.getResponseContent()));
-		Assert.assertTrue( !response.streamWasFlushed());
-		Assert.assertTrue( !response.streamWasClosed());
-		Assert.assertTrue( response.getContentType() == null);
-		Assert.assertTrue( response.getContentLength() == 0);
-		Assert.assertTrue( response.getStatus() == 0);
+		testInit();
 		
-		response.setContentType("text/html");
-		Assert.assertTrue("text/html".equals(response.getContentType()));
+		servletConfig.setServletName("fred");
+		Assert.assertTrue("fred".equals(servletConfig.getServletName()));
 		
-		response.setContentLength(8);
-		Assert.assertTrue( response.getContentLength() == 8);
+		servletConfig.getInitParmMap().put("fu", "bar");
+		Assert.assertTrue( servletConfig.getInitParameterNames().hasMoreElements());
+		Assert.assertTrue("bar".equals(servletConfig.getInitParameter("fu")));
 		
-		response.setStatus(200);
-		Assert.assertTrue( response.getStatus() == 200);
-		
-		response.setStatus(500, "crap");
-		Assert.assertTrue( response.getStatus() == 500);
+		servletConfig.init();
+		testInit();
+	}
+
+	protected void testInit() {
+		Assert.assertTrue("testServlet".equals(servletConfig.getServletName()));
+		Assert.assertTrue(servletConfig.getServletContext() != null);
+		Assert.assertTrue( !servletConfig.getInitParameterNames().hasMoreElements());
 	}
 
 }
