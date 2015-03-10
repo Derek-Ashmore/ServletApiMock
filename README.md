@@ -14,3 +14,15 @@ The following Servlet-api interfaces are mocked:
 | MockResponse               | javax.servlet.HttpServletResponse      |  
 | MockServletOutputStream    | javax.servlet.ServletOutputStream      |  
 | MockSession                | javax.servlet.HttpSession              |  
+
+## Installation Instructions  
+ServletApiMock is easy to install whether you use maven or not.
+
+### Maven Users  
+Maven users can find dependency information [here](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22ServletApiMock%22).
+
+### Non-Maven Users  
+Include the following jars in your class path:  
+* Download the ServletApiMock jar from [Github](https://github.com/Derek-Ashmore/ServletApiMock/releases) and put it in your test class path.  
+* Insure Apache Commons Lang version 3.0 or above is in your class path.  
+
